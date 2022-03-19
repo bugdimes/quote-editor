@@ -1,4 +1,4 @@
 class Quote < ApplicationRecord
   validates :name, presence: true
-  default_scope { order(created_at: :desc) }
+  scope :ordered, -> { order(id: :desc) }
 end
