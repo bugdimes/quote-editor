@@ -15,7 +15,10 @@ class QuotesController < ApplicationController
   def create
     @quote = Quote.new(quote_params)
     if @quote.save
-      redirect_to quotes_path, notice: 'Quote was added successfully'
+      respond_to do |format|
+        format.html { redirect_to quotes_path, notice: 'qoute was created successfully' }
+        format.turbo_stream
+      end
     else
       render :new, status: :unprocessable_entity
     end
